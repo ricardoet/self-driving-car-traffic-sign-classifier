@@ -103,24 +103,32 @@ For the optimizer I used the "Adam Optimizer" as was the default in the starting
 
 ####5. Describe the approach taken for finding a solution. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
-The code for calculating the accuracy of the model is located in the ninth cell of the Ipython notebook.
+The code for calculating the accuracy of the model is located in the 13th cell of the Ipython notebook.
 
 My final model results were:
-* training set accuracy of ?
-* validation set accuracy of ? 
-* test set accuracy of ?
+* training set accuracy of 0.984
+* validation set accuracy of 0.955 
+* test set accuracy of 0.936
 
 If an iterative approach was chosen:
 * What was the first architecture that was tried and why was it chosen?
-* What were some problems with the initial architecture?
-* How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to over fitting or under fitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
-* Which parameters were tuned? How were they adjusted and why?
-* What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
+The first architecture was obviously the one from the lab, this yielded around 87% accuracy, pretty low for the >93% I was aiming for.
 
-If a well known architecture was chosen:
-* What architecture was chosen?
-* Why did you believe it would be relevant to the traffic sign application?
-* How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
+* What were some problems with the initial architecture?
+As I said before, it could only get to aroung 87-88%, even changing the hyperparameters. It was clear that I had to pre-process the images and change the network's architecture in order to continue getting better accuracy.
+
+* How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to over fitting or under fitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
+Overall the whole setup was changed several times and in really big ways. I had trouble realizing what changes had to be made in order to get better predictions. At the end, the obvious worked, deeper and wider networks worked best. I think having 2 initial convolutional networks with 5x5 filters was an important part of the whole network.
+
+Also, augmenting the dataset, changing it to grayscale and normalizing helped bring the validation accuracy to >95%.
+
+* Which parameters were tuned? How were they adjusted and why?
+Basically everything was tuned, either because I was overfitting the training set or because I couldn't reach 93% after hours of training on Amazon's AWS (which can get a bit pricey!). The ones that were changed but at last ended being the same were the learning rate and the batch size, which are pretty standard.
+
+* What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
+As I stated before, I think having 2 initial convolutional networks with big filters (5x5) is key to the success of my neural network. Also, having a dropout after each layer is pretty standard (left it at 0.9 as 0.8 took too much time to train and sometimes seemed to reach a local peak before, which makes no sense to me).
+
+Also, making the neural network somehow deep is important too, being careful of not going to deep because the training time can grow really fast because of this, depending on your network structure.
  
 
 ###Test a Model on New Images
@@ -129,8 +137,10 @@ If a well known architecture was chosen:
 
 Here are five German traffic signs that I found on the web:
 
-![alt text][image4] ![alt text][image5] ![alt text][image6] 
+![alt text][https://github.com/ricardoet/self-driving-car-traffic-sign-classifier/blob/master/german%20signs/img1.png] ![alt text][image5] ![alt text][image6] 
 ![alt text][image7] ![alt text][image8]
+
+
 
 The first image might be difficult to classify because ...
 
