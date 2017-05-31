@@ -171,7 +171,7 @@ The model was able to predict correctly only 1/5 images, giving an accuracy of 2
 The code for making predictions on my final model is located in the 17th cell of the Ipython notebook.
 
 <p align="center">
-  <img src="https://github.com/ricardoet/self-driving-car-traffic-sign-classifier/blob/master/german%20signs/softmax%20probabilities%20new%20images.JPG" width="150"/>
+  <img src="https://github.com/ricardoet/self-driving-car-traffic-sign-classifier/blob/master/german%20signs/softmax%20probabilities%20new%20images.JPG" width="700"/>
 </p>
 
 As you can clearly see in this table showing the top 5 softmax probabilities for each of the new images, my NN was always "pretty sure" about its prediction, having 3 predictions at 100%, another one at 89% and the last one at 65%.
