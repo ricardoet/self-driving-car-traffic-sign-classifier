@@ -137,43 +137,43 @@ Also, making the neural network somehow deep is important too, being careful of 
 
 Here are five German traffic signs that I found on the web:
 
-![alt text][https://github.com/ricardoet/self-driving-car-traffic-sign-classifier/blob/master/german%20signs/img1.png] ![alt text][image5] ![alt text][image6] 
-![alt text][image7] ![alt text][image8]
+<p align="center">
+  <img src="https://github.com/ricardoet/self-driving-car-traffic-sign-classifier/blob/master/german%20signs/img1.png" width="150"/>
+  <img src="https://github.com/ricardoet/self-driving-car-traffic-sign-classifier/blob/master/german%20signs/img2.png" width="150"/>
+  <img src="https://github.com/ricardoet/self-driving-car-traffic-sign-classifier/blob/master/german%20signs/img3.png" width="150"/>
+  <img src="https://github.com/ricardoet/self-driving-car-traffic-sign-classifier/blob/master/german%20signs/img4.png" width="150"/>
+  <img src="https://github.com/ricardoet/self-driving-car-traffic-sign-classifier/blob/master/german%20signs/img5.png" width="150"/>
+</p>
 
+I was really careful choosing "clean" images (no watermark text or anything above the sign) as to not affect the neural network's capacity of predicting the correct label. I thought I could get a reasonable prediction accuracy on these images but as you'll read below it wasn't exactly the case.
 
-
-The first image might be difficult to classify because ...
+One thing I did, which as far as I know it shouldn't affect the NN, was crop and rescale the images to fit the 32x32 needed size.
 
 ####2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. Identify where in your code predictions were made. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
-The code for making predictions on my final model is located in the tenth cell of the Ipython notebook.
+The code for making predictions on my final model is located in the 16th cell of the Ipython notebook.
 
 Here are the results of the prediction:
 
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+| 50 km/hr      		| 20 km/hr   									| 
+| No stopping     			| End of all speed and passing limits 										|
+| Priority Road					| Priority Road											|
+| 12-ton Weight Limit	      		| 120 km/hr					 				|
+| 100 km/hr			| 20 km/hr      							|
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+The model was able to predict correctly only 1/5 images, giving an accuracy of 20%, really much lower than the 93% test accuracy. As I explain below, it wasn't so far off, predicting images that really look alike or share characteristics.
 
 ####3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction and identify where in your code softmax probabilities were outputted. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
-The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
+The code for making predictions on my final model is located in the 17th cell of the Ipython notebook.
 
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+<p align="center">
+  <img src="https://github.com/ricardoet/self-driving-car-traffic-sign-classifier/blob/master/german%20signs/softmax%20probabilities%20new%20images.jpg" width="150"/>
+</p>
 
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+As you can clearly see in this table showing the top 5 softmax probabilities for each of the new images, my NN was always "pretty sure" about its prediction, having 3 predictions at 100%, another one at 89% and the last one at 65%.
 
-
-For the second image ... 
+It's important to note that even though my NN only accurately predicted 1/5 images, either the first or second prediction of the failed ones are labels that look alike, for example predicting a 120km/hr label instead of a 12-ton limit.
